@@ -1,0 +1,1 @@
+Tutaj wrzucamy wszystkie smieci odnosnie hardware'u ;)
