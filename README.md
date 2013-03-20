@@ -2,9 +2,6 @@ RCXProject
 ==========
 
 Nasze repo odnosnie projektu grupowego RCX
-<<<<<<< HEAD
-sdjsdajl;sdf pj'gsd 'opjisfge';opl
-=======
 
 20/03/2013
 Za³o¿enia dzisiejszego spotkania (sekretarz partii BlackPear alias(patryk)):
@@ -32,4 +29,3 @@ Software
 
 Kroki:
 P³ytka(ogarn¹æ jakie wejœcia wyjœcia)
->>>>>>> dbb6095407791c1b96fb1297d9841aafc3619350
