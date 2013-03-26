@@ -54,14 +54,14 @@ void IOToggle(void)
      This code needs to be compiled with high speed optimization option.  */
   while (1)
   {
-    /* Set PC8 and PC9 */
-    GPIOC->BSRR = BSRR_VAL;
+    /* Set PC8 and reset PC9 */
+    GPIOC->ODR = 0b1000000000;
 		
 		/* Delay some time */
 		for(times = 0; times < 500000; times++);
 		
     /* Reset PC8 and PC9 */
-    GPIOC->BRR = BSRR_VAL;
+		GPIOC->ODR = 0b0100000000;
 		
 		/* Delay some time */
 		for(times = 0; times < 500000; times++);
