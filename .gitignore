@@ -66,3 +66,5 @@ fw/legoRCX/legoRCX_Flash/Debug/bin/legoRCX_Flash.elf
 fw/legoRCX/legoRCX_Flash/Debug/obj/history.xml
 fw/legoRCX/legoRCX_Flash/Debug/obj/main.o
 fw/legoRCX/legoRCX_Flash/legoRCX_Flash.elf.xcodeproj/project.pbxproj
+*.o
+*.class

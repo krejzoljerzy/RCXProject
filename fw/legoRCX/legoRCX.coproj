@@ -34,8 +34,8 @@
         <Option name="OutputFileType" value="0"/>
         <Option name="Path" value="D:/gitHub/RCXProject/fw/legoRCX"/>
         <Option name="Name" value="legoRCX_Flash"/>
-        <Option name="HEX" value="1"/>
-        <Option name="BIN" value="1"/>
+        <Option name="HEX" value="0"/>
+        <Option name="BIN" value="0"/>
         <Option name="ComponentFileStoragePath" value=""/>
       </Output>
       <User>
@@ -54,7 +54,7 @@
       <Option name="org.coocox.codebugger.gdbjtag.core.jlinkResetMode" value="Type 0: Normal"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.resetMode" value="SYSRESETREQ"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.ifSemihost" value="0"/>
-      <Option name="org.coocox.codebugger.gdbjtag.core.ifCacheRom" value="1"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.ifCacheRom" value="0"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.ipAddress" value="127.0.0.1"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.portNumber" value="2009"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.autoDownload" value="1"/>
@@ -137,9 +137,9 @@
   <Files>
     <File name="stm_lib" path="" type="2"/>
     <File name="example/IOToggle.c" path="example/IOToggle.c" type="1"/>
-    <File name="example" path="" type="2"/>
     <File name="cmsis_core/core_cm0.h" path="cmsis_core/core_cm0.h" type="1"/>
     <File name="stm_lib/inc/stm32f0xx_usart.h" path="stm_lib/inc/stm32f0xx_usart.h" type="1"/>
+    <File name="example" path="" type="2"/>
     <File name="cmsis_boot/startup/startup_stm32f0xx.s" path="cmsis_boot/startup/startup_stm32f0xx.s" type="1"/>
     <File name="cmsis_boot/stm32f0xx_conf.h" path="cmsis_boot/stm32f0xx_conf.h" type="1"/>
     <File name="cmsis_boot/system_stm32f0xx.c" path="cmsis_boot/system_stm32f0xx.c" type="1"/>
