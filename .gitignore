@@ -77,3 +77,9 @@ fw/legoRCX/legoRCX_Flash/legoRCX_Flash.elf.xcodeproj/project.pbxproj
 sw/CompileAndLink/bin/com/BGHK/RCX/CompileAndLink/CompileAndLink.class
 /sw/LegoGUI/nbproject/private/
 /sw/LegoGUI/build/
+/sw/GUIFormExamples/nbproject/private/
+/sw/GUIFormExamples/build/
+/sw/AnagramGame/nbproject/private/
+/sw/AnagramGame/build/
+/sw/JavaApplication15/nbproject/private/
+/sw/JavaApplication15/build/

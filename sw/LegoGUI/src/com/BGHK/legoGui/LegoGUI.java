@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package com.BGHK.legoGui;
-
+import com.BGHK.elements.Block;
 /**
  *
  * @author johns
@@ -17,6 +17,9 @@ public class LegoGUI {
         
         Window window = new Window();
         window.startWindow();
+
         // TODO code application logic here
     }
+
+
 }
