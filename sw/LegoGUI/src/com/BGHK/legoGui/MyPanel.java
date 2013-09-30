@@ -27,88 +27,86 @@
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */ 
-
-
+ */
 package com.BGHK.legoGui;
 
-
 import com.BGHK.elements.Block;
+import com.BGHK.elements.Root;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 
-import java.awt.Graphics; 
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-
-public class MyPanel extends JPanel implements  MouseWheelListener  {
+public class MyPanel extends JPanel implements MouseWheelListener {
 
     private Image image;
+    public static int status;
+    public static Block dragged = null;
 
     public MyPanel() {
         super();
         addMouseWheelListener(this);
-        this.setBackground(Color.black);
-    try {                
-          image = ImageIO.read(new File("img.jpg"));
-        //  this.setLayout(null);
-          
-       } catch (IOException ex) {
+        this.setBackground(new Color(0x535555));
+        try {
+            image = ImageIO.read(new File("img.jpg"));
+            //  this.setLayout(null);
+
+        } catch (IOException ex) {
             // handle exception...
-       }
+        }
+
+        
 
     }
-    
+
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g); 
+        super.paintComponent(g);
         //prepareFrame
         prepareFrame(g);
 
     }
-    private void prepareFrame(Graphics g){
+
+    private void prepareFrame(Graphics g) {
         Dimension size = this.getSize();
         removeAll();
-        for (Block b: Window.blockList){
-        add(b);
+        for (Block b : Window.blockList) {
+            add(b);
         }
- 
-       // getAllInstances to draw on frame
-    
-    }
 
+        // getAllInstances to draw on frame
+
+    }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent mwe) {
         int mouseRotationDirection = mwe.getWheelRotation();
-        if(mouseRotationDirection>0){
-        Window.scale *=0.8;
-        System.out.println(Window.scale);
-        if (Window.scale <0.09)
-        { Window.scale = 0.09;
-            }    
-        }
-        else {
-        Window.scale /=0.8;
-        if(Window.scale>2){
-        Window.scale=2;
-        }
-        System.out.println(Window.scale);
-        }
-        
-        for (Block b: Window.blockList){
-        b.setBounds(b.x, b.y, (int) (b.sizeX*Window.scale) , (int) (b.sizeY*Window.scale));
+        if (mouseRotationDirection > 0) {
+            Window.scale *= 0.8;
+            System.out.println(Window.scale);
+            if (Window.scale < 0.09) {
+                Window.scale = 0.09;
+            }
+        } else {
+            Window.scale /= 0.8;
+            if (Window.scale > 2) {
+                Window.scale = 2;
+            }
+            System.out.println(Window.scale);
         }
 
-        
+
+
     }
-
-    
-
+    public static void setDragged (Block draggedObject){
+        dragged=draggedObject;
+    }
 }
