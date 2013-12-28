@@ -14,6 +14,7 @@ import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -83,6 +84,16 @@ public class Motors extends Block {
         title.setText(titleStr);
         power.setText(param1Str);
         time.setText(param2Str);
+        setBounds((int)x, (int)y, (int) (sizeX*Window.scale), (int) (sizeY*Window.scale));
         this.validate();
     }
+    
+    
+
+    
+
+
+    
+    
+    
 }

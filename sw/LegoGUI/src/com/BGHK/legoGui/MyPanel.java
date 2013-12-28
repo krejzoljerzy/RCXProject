@@ -31,29 +31,36 @@
 package com.BGHK.legoGui;
 
 import com.BGHK.elements.Block;
-import com.BGHK.elements.Root;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-public class MyPanel extends JPanel implements MouseWheelListener {
+public class MyPanel extends JPanel implements MouseWheelListener, MouseMotionListener, MouseListener {
 
     private Image image;
     public static int status;
     public static Block dragged = null;
+    private double prevScale=1;
+    Point coordinates;
 
     public MyPanel() {
         super();
         addMouseWheelListener(this);
+        addMouseMotionListener(this);
+        addMouseListener(this);
         this.setBackground(new Color(0x535555));
         try {
             image = ImageIO.read(new File("img.jpg"));
@@ -62,7 +69,6 @@ public class MyPanel extends JPanel implements MouseWheelListener {
         } catch (IOException ex) {
             // handle exception...
         }
-
         
 
     }
@@ -89,24 +95,103 @@ public class MyPanel extends JPanel implements MouseWheelListener {
     @Override
     public void mouseWheelMoved(MouseWheelEvent mwe) {
         int mouseRotationDirection = mwe.getWheelRotation();
+        Dimension dim = getSize();
         if (mouseRotationDirection > 0) {
-            Window.scale *= 0.8;
+            Window.scale -= 0.0625;
             System.out.println(Window.scale);
-            if (Window.scale < 0.09) {
-                Window.scale = 0.09;
+            if (Window.scale < 0.0625) {
+                Window.scale = 0.0625;
             }
+            
+            for (Block b : Window.blockList){
+            // Transpose
+                b.x = ((b.x-dim.width/2)/prevScale*Window.scale+dim.width/2);
+                b.y = ((b.y-dim.width/2)/prevScale*Window.scale+dim.width/2);
+                
+               // b.setBounds((int)b.x, (int)b.y, (int) (100*Window.scale), (int) (100*Window.scale));
+                b.refresh();
+            }
+            
+            
         } else {
-            Window.scale /= 0.8;
+            Window.scale += 0.0625;
             if (Window.scale > 2) {
                 Window.scale = 2;
             }
+            for (Block b : Window.blockList){
+            // Transpose
+                b.x = ((b.x-dim.width/2)/prevScale*Window.scale+dim.width/2);
+                b.y = ((b.y-dim.width/2)/prevScale*Window.scale+dim.width/2);
+                
+               // b.setBounds((int)b.x, (int)b.y, (int) (100*Window.scale), (int) (100*Window.scale));
+                b.refresh();
+            }
+            
             System.out.println(Window.scale);
         }
-
+        
+        
+        
+        
+        prevScale=Window.scale;
 
 
     }
     public static void setDragged (Block draggedObject){
         dragged=draggedObject;
     }
+
+    @Override
+    public void mouseDragged(MouseEvent me) {
+      System.out.println("dragged");
+        for(Block b : Window.blockList){
+            try{
+            int tempX = (int) b.x+(me.getX()-coordinates.x);
+            int tempY = (int) b.y+(me.getY()-coordinates.y);
+            b.setBounds(tempX,tempY,(int)(b.sizeX*Window.scale),(int)(b.sizeY*Window.scale));
+           // b.refresh();
+            } catch (NullPointerException np){
+            System.out.println("No blocks to move.");
+            }
+        }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent me) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent me) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent me) {
+       coordinates =  me.getPoint();
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent me) {
+        // Store coordinates in object's variable.
+        for (Block b : Window.blockList){
+                Rectangle temp = b.getBounds();
+                b.x = temp.x;
+                b.y = temp.y;
+            }
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {
+        System.out.println("test");
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+
 }

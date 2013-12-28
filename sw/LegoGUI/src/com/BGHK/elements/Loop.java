@@ -80,6 +80,7 @@ public class Loop extends Block {
         title.setText(titleStr);
         power.setText(param1Str);
         time.setText(param2Str);
+        setBounds((int)x,(int)y,(int)(sizeX*Window.scale),(int)(sizeY*Window.scale));
         this.validate();
     }
 }

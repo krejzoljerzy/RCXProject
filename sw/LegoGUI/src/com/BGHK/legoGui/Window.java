@@ -26,6 +26,10 @@ public class Window extends javax.swing.JFrame {
      */
     public Window() {
         initComponents();
+        Root main = new Root(Color.BLUE,"main()",25,20);
+        Root sensor1 = new Root(Color.red,"sensor1",25,170);
+        Root sensor2 = new Root(Color.red,"sensor2",25,320);
+        Root sensor3 = new Root(Color.red,"sensor3",25,470);
     }
 
     /**
@@ -288,7 +292,8 @@ public class Window extends javax.swing.JFrame {
                 case "silniki":
                     color = new Color(0x5E9C54);
                     block = new Motors(color, 1);
-
+                    this.myPanel1.add(block);
+                    this.myPanel1.repaint();
                     break;
                 case "dźwięki":
                     color = new Color(0x5E9C54);
@@ -364,7 +369,7 @@ public class Window extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Window().setVisible(true);
+                setVisible(true);
                 
             }
         });

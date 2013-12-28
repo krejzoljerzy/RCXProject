@@ -24,8 +24,8 @@ import javax.swing.JPanel;
 public class Block extends JPanel implements MouseMotionListener, MouseListener {
 
     public String test = "test";
-    public int x = 100;
-    public int y = 100;
+    public double x = 100;
+    public double y = 100;
     public int sizeX = 100;
     public int sizeY = 100;
     public int sizeXSelected = 80;
@@ -54,7 +54,25 @@ public class Block extends JPanel implements MouseMotionListener, MouseListener 
         setBackground(color);
         setVisible(true);
         Window.blockList.add(0, this);
-        setBounds(x, y, (int) (sizeX * Window.scale), (int) (sizeY * Window.scale));
+        setBounds((int)x, (int)y, (int) (sizeX * Window.scale), (int) (sizeY * Window.scale));
+
+
+
+    }
+    public Block(Color clr, int mX, int mY) {
+        super();
+        x=mX;
+        y=mY;
+        enumer++;
+        id = enumer;
+        color = clr;
+        addMouseListener(this);
+        addMouseMotionListener(this);
+
+        setBackground(color);
+        setVisible(true);
+        Window.blockList.add(0, this);
+        setBounds((int)x, (int)y, (int) (sizeX * Window.scale), (int) (sizeY * Window.scale));
 
 
 
@@ -69,6 +87,7 @@ public class Block extends JPanel implements MouseMotionListener, MouseListener 
     public void mousePressed(MouseEvent me) {
         Window.blockList.remove(this);
         Window.blockList.add(0, this);
+        
         System.out.println("Pressed");
 
 
@@ -83,19 +102,24 @@ public class Block extends JPanel implements MouseMotionListener, MouseListener 
     @Override
     public void mouseReleased(MouseEvent me) {
 
-        Rectangle rect = this.getBounds();
+        
+        //Rectangle rect = this.getBounds();
         Block ancestor = intersectsWith();
+        System.out.println("released");
         try {
 
-
-            ancestor.setChild(this);
-
+            if (ancestor!= null){
+                ancestor.setChild(this);
+            }
         } catch (NullPointerException e) {
+            System.out.println("ancestor was null pointered");
         }
 
-
+        
         x = this.getBounds().x;
         y = this.getBounds().y;
+        refresh();
+       
         dragged = false;
 
 
@@ -123,8 +147,8 @@ public class Block extends JPanel implements MouseMotionListener, MouseListener 
     @Override
     public void mouseDragged(MouseEvent me) {
         dragged = true;
-        int tempX = x + (me.getXOnScreen() - globalPositionX);
-        int tempY = y + (me.getYOnScreen() - globalPositionY);
+        int tempX = (int)x + (me.getXOnScreen() - globalPositionX);
+        int tempY = (int)y + (me.getYOnScreen() - globalPositionY);
         int tempWidth = (int) (sizeX * Window.scale);
         int tempHeight = (int) (sizeY * Window.scale);
         setBounds(tempX, tempY, tempWidth, tempHeight);
@@ -133,11 +157,13 @@ public class Block extends JPanel implements MouseMotionListener, MouseListener 
         try {
             while (lastChild.childBlock != null) {
                 lastChild = lastChild.childBlock;
-                tempX = lastChild.x = (int) (tempX + 10 * Window.scale + tempWidth);
-                tempY = lastChild.y = tempY;
-                tempWidth = lastChild.sizeX = tempWidth;
-                tempHeight = lastChild.sizeY = tempHeight;
-                lastChild.setBounds(lastChild.x, lastChild.y, lastChild.sizeX, lastChild.sizeY);
+                lastChild.x = tempX + 10 * Window.scale + tempWidth;
+                lastChild.y = tempY;
+                lastChild.setBounds((int)lastChild.x, (int)lastChild.y, (int)(lastChild.sizeX*Window.scale), (int)(lastChild.sizeY*Window.scale));
+                //lastChild.refresh();
+                tempX = (int) lastChild.x;
+                tempY = (int) lastChild.y;
+ 
             }
         } catch (NullPointerException e) {
         }
@@ -159,6 +185,7 @@ public class Block extends JPanel implements MouseMotionListener, MouseListener 
     }
 
     public void reposition() {
+        setBounds((int)x,(int)y, (int) (sizeX*Window.scale), (int) (sizeY*Window.scale));        
     }
 
     /**
@@ -189,15 +216,13 @@ public class Block extends JPanel implements MouseMotionListener, MouseListener 
         Block lastChild = this;
         while (lastChild.childBlock != null) {
             lastChild = lastChild.childBlock;
-            int tempX = lastChild.parentBlock.x;
-            int tempY = lastChild.parentBlock.y;
+            int tempX = (int)lastChild.parentBlock.x;
+            int tempY = (int)lastChild.parentBlock.y;
             int tempWidth = lastChild.parentBlock.sizeX;
             int tempHeight = lastChild.parentBlock.sizeY;
-            lastChild.x = (int) (tempX + 10 * Window.scale + tempWidth);
+            lastChild.x = (int) (tempX + 10 * Window.scale + tempWidth*Window.scale);
             lastChild.y = tempY;
-            lastChild.sizeX = tempWidth;
-            lastChild.sizeY = tempHeight;
-            lastChild.setBounds(lastChild.x, lastChild.y, lastChild.sizeX, lastChild.sizeY);
+            lastChild.setBounds((int)lastChild.x, (int)lastChild.y, (int)(lastChild.sizeX*Window.scale),(int)( lastChild.sizeY*Window.scale));
             lastChild.revalidate();
         }
 
