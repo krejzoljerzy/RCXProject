@@ -20,16 +20,29 @@ import javax.swing.tree.TreePath;
  * @author johns
  */
 public class Window extends javax.swing.JFrame {
+    
+    public static Trash dustbin;
+    private CodeGenerator generator;
 
     /**
      * Creates new form NewJFrame
      */
     public Window() {
         initComponents();
+        ArrayList<Block> rootList = new ArrayList();
         Root main = new Root(Color.BLUE,"main()",25,20);
         Root sensor1 = new Root(Color.red,"sensor1",25,170);
         Root sensor2 = new Root(Color.red,"sensor2",25,320);
         Root sensor3 = new Root(Color.red,"sensor3",25,470);
+        rootList.add(main);
+        rootList.add(sensor1);
+        rootList.add(sensor2);
+        rootList.add(sensor3);
+        dustbin = new Trash(Color.red, null, myPanel1.getWidth()-100, 0);
+        generator = new CodeGenerator(rootList);
+        
+        
+        
     }
 
     /**
@@ -266,7 +279,8 @@ public class Window extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+     generator.createCode();
+     
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

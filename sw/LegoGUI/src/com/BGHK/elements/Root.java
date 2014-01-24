@@ -29,42 +29,49 @@ public class Root extends Block {
     String titleStr;
 
     public Root(Color clr, String name, int privX, int privY) {
-        super(clr,privX,privY);
-        x=privX;
-        y=privY;
+        super(clr, privX, privY);
+        x = privX;
+        y = privY;
+
         //removeMouseListener(this);
         //removeMouseMotionListener(this);
         titleStr = name;
         title = new JLabel(name, JLabel.CENTER);
-        title.setFont(new Font ("Tahoma", Font.BOLD, 23));
+        title.setFont(new Font("Tahoma", Font.BOLD, 23));
         this.add(title);
         this.validate();
 
     }
 
     private void resizeText() {
-        title.setFont(new Font ("Tahoma", Font.BOLD, (int)(23*Window.scale)));
+        title.setFont(new Font("Tahoma", Font.BOLD, (int) (23 * Window.scale)));
         this.validate();
-    }   
+    }
 
     @Override
-    public void refresh(){
+    public void refresh() {
         resizeText();
         title.setText(titleStr);
-        setBounds((int)x,(int)y,(int)(sizeX*Window.scale), (int)(sizeY*Window.scale));
+        setBounds((int) x, (int) y, (int) (sizeX * Window.scale), (int) (sizeY * Window.scale));
         this.validate();
     }
+
+    @Override
+    public void mouseDragged(MouseEvent me) {
+    }
+
     
     @Override
-    public void mouseDragged(MouseEvent me) { 
+    public String getFunction(int indentLevel) {
+
+        if (childBlock != null) {
+            function = makeIndent(indentLevel) + "blockId =" +childBlock.getId()+";\r\n";
+            return function;
+        } else {
+            return makeIndent(indentLevel) + function;
+        }
+
+        
     }
-    
-    
 
-    
-
-
-    
-    
-    
 }

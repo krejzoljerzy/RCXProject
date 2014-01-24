@@ -1,0 +1,1 @@
+"D:\gitHub\RCXProject\3rd party\FM\FM.exe" QUIET(D:\gitHub\RCXProject\sw\LegoGUI\programmer\log.txt) COM(1, 115200) DEVICE(LPC1114/302,0,0) ERASE(DEVICE, PROTECTISP) HEXFILE(D:\gitHub\RCXProject\fw\legoRCX\Debug\RCX-LPC.hex, NOCHECKSUMS, NOFILL, PROTECTISP)

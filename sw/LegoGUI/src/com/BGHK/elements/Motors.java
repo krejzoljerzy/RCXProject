@@ -39,7 +39,7 @@ public class Motors extends Block {
 
     public Motors(Color clr, int number) {
         super(clr);
-        param1Str = Integer.toString (id);
+        param1Str = Integer.toString (getId());
         param2Str = Integer.toString(parentId);
         addMouseListener(this);
         Window.myPanel1.add(this);
@@ -79,7 +79,7 @@ public class Motors extends Block {
     public void refresh(){
         resizeText();
         titleStr = "Silnik " + Integer.toString(motorNumber);
-        param1Str = Integer.toString (id);
+        param1Str = Integer.toString (getId());
         param2Str = Integer.toString(parentId);
         title.setText(titleStr);
         power.setText(param1Str);

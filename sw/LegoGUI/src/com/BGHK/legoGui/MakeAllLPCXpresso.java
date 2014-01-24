@@ -1,4 +1,4 @@
-package com.BGHK.RCX.CompileAndLink;
+package com.BGHK.legoGui;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -6,29 +6,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class MakeAllLPCXpresso {
-
-	static String compileCommands = "arm-none-eabi-gcc"
-			+ " -mcpu=cortex-m0 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F050C6 -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ ";
-
-	static String includePaths[] = {};
-
-	static String[] filesToCompile = {};
-
-	static String linkerCommand = "arm-none-eabi-gcc -mcpu=cortex-m0 -mthumb -nostartfiles -g";
-	static String mapFile = "legoRCXMap.map";
-	static String outPutElfFile = "legoRCX.elf";
-
+public class MakeAllLPCXpresso {    
+    
 	public static void compileAndLink() {
+            try {
+                // Execute command
+                Process child = Runtime.getRuntime().exec(
+                                "cmd /c start compilerCommand.bat ");
+            } catch (IOException ex) {
+                Logger.getLogger(MakeAllLPCXpresso.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-		try {
-			// Execute command
-			Process child = Runtime.getRuntime().exec(
-					"cmd /b start compilerCommand.bat ");
-
-		} catch (IOException e) {
-		}
+	
 
 	}
 
@@ -74,9 +66,6 @@ public class MakeAllLPCXpresso {
 			FileWriter fstream = new FileWriter("compilerCommand.bat");
 			BufferedWriter out = new BufferedWriter(fstream);
 			
-			// Create String array with all files to compile.
-			String[] fileName = new String[filesToCompile.length];
-			
 			String buffer = "make clean \r\n make all";
 				out.write(buffer);
                                 out.close();
@@ -92,8 +81,12 @@ public class MakeAllLPCXpresso {
 
 	}
 
-	public static void main(String[] args) throws IOException {
-		createBatFile();
+	public MakeAllLPCXpresso (){
+            try {
+                createBatFile();
+            } catch (IOException ex) {
+                Logger.getLogger(MakeAllLPCXpresso.class.getName()).log(Level.SEVERE, null, ex);
+            }
 		compileAndLink();
 
 	}

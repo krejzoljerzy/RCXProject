@@ -105,8 +105,9 @@ public class MyPanel extends JPanel implements MouseWheelListener, MouseMotionLi
             
             for (Block b : Window.blockList){
             // Transpose
+                
                 b.x = ((b.x-dim.width/2)/prevScale*Window.scale+dim.width/2);
-                b.y = ((b.y-dim.width/2)/prevScale*Window.scale+dim.width/2);
+                b.y = ((b.y-dim.height/2)/prevScale*Window.scale+dim.height/2);
                 
                // b.setBounds((int)b.x, (int)b.y, (int) (100*Window.scale), (int) (100*Window.scale));
                 b.refresh();
@@ -121,7 +122,7 @@ public class MyPanel extends JPanel implements MouseWheelListener, MouseMotionLi
             for (Block b : Window.blockList){
             // Transpose
                 b.x = ((b.x-dim.width/2)/prevScale*Window.scale+dim.width/2);
-                b.y = ((b.y-dim.width/2)/prevScale*Window.scale+dim.width/2);
+                b.y = ((b.y-dim.height/2)/prevScale*Window.scale+dim.height/2);
                 
                // b.setBounds((int)b.x, (int)b.y, (int) (100*Window.scale), (int) (100*Window.scale));
                 b.refresh();

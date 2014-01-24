@@ -14,9 +14,11 @@ public class LegoGUI {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        //Programmer test = new Programmer(1, 115200);
         Window window = new Window();
         window.startWindow();
+        
+        
 
         // TODO code application logic here
     }
